@@ -1,10 +1,15 @@
 import { Box, IconButton, InputBase, useTheme } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import LightModeIcon from "@mui/icons-material/LightModeOutlined";
+import { useThemeContext } from "../../Context/ThemeContext";
 import DarkModeIcon from "@mui/icons-material/DarkModeOutlined";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import PersonIcon from "@mui/icons-material/Person";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 export default function Header() {
   const { colors, palette } = useTheme();
+  const { toggleTheme } = useThemeContext();
 
   return (
     <Box display={"flex"} justifyContent={"space-between"} p={2}>
@@ -22,14 +27,20 @@ export default function Header() {
 
       <Box display={"flex"}>
         <IconButton>
-          {palette.mode !== "dark" ? <DarkModeIcon /> : <LightModeIcon />}
+          <NotificationsIcon />
         </IconButton>
 
-        <IconButton></IconButton>
+        <IconButton>
+          <PersonIcon />
+        </IconButton>
 
-        <IconButton></IconButton>
+        <IconButton>
+          <SettingsIcon />
+        </IconButton>
 
-        <IconButton></IconButton>
+        <IconButton onClick={toggleTheme}>
+          {palette.mode !== "dark" ? <DarkModeIcon /> : <LightModeIcon />}
+        </IconButton>
       </Box>
     </Box>
   );
